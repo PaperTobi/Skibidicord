@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -52,8 +52,8 @@ export default definePlugin({
             replacement: {
                 // react.jsx)(AccountPanel, { ..., showTaglessAccountPanel: blah })
                 match: /(?<=\i\.jsxs?\)\()(\i),{(?=[^}]*?userTag:\i,hidePrivateData:)/,
-                // react.jsx(WrapperComponent, { VencordOriginal: AccountPanel, ...
-                replace: "$self.PanelWrapper,{VencordOriginal:$1,"
+                // react.jsx(WrapperComponent, { SkibidicordOriginal: AccountPanel, ...
+                replace: "$self.PanelWrapper,{SkibidicordOriginal:$1,"
             }
         },
         {
@@ -88,7 +88,7 @@ export default definePlugin({
 
     start: () => toggleHoverControls(Settings.plugins.SpotifyControls.hoverControls),
 
-    PanelWrapper({ VencordOriginal, ...props }) {
+    PanelWrapper({ SkibidicordOriginal, ...props }) {
         return (
             <>
                 <ErrorBoundary
@@ -102,7 +102,7 @@ export default definePlugin({
                     <Player />
                 </ErrorBoundary>
 
-                <VencordOriginal {...props} />
+                <SkibidicordOriginal {...props} />
             </>
         );
     }

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -90,7 +90,7 @@ export interface Command {
     type?: ApplicationCommandType;
     inputType?: ApplicationCommandInputType;
     plugin?: string;
-    isVencordCommand?: boolean;
+    isSkibidicordCommand?: boolean;
 
     name: string;
     untranslatedName?: string;

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import { useSettings } from "@api/Settings";
 import { classNameFactory } from "@api/Styles";
 import DonateButton from "@components/DonateButton";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
-import { gitRemote } from "@shared/vencordUserAgent";
+import { gitRemote } from "@shared/skibidicordUserAgent";
 import { Margins } from "@utils/margins";
 import { identity } from "@utils/misc";
 import { relaunch, showItemInFolder } from "@utils/native";
@@ -43,8 +43,8 @@ type KeysOfType<Object, Type> = {
 }[keyof Object];
 
 
-function VencordSettings() {
-    const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
+function SkibidicordSettings() {
+    const [settingsDir, , settingsDirPending] = useAwaiter(SkibidicordNative.settings.getSettingsDir, {
         fallbackValue: "Loading..."
     });
     const settings = useSettings();
@@ -98,7 +98,7 @@ function VencordSettings() {
         ];
 
     return (
-        <SettingsTab title="Vencord Settings">
+        <SettingsTab title="Skibidicord Settings">
             <DonateCard image={donateImage} />
             <Forms.FormSection title="Quick Actions">
                 <QuickActionCard>
@@ -110,7 +110,7 @@ function VencordSettings() {
                     <QuickAction
                         Icon={PaintbrushIcon}
                         text="Edit QuickCSS"
-                        action={() => VencordNative.quickCss.openEditor()}
+                        action={() => SkibidicordNative.quickCss.openEditor()}
                     />
                     {!IS_WEB && (
                         <QuickAction
@@ -129,7 +129,7 @@ function VencordSettings() {
                     <QuickAction
                         Icon={GithubIcon}
                         text="View Source Code"
-                        action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
+                        action={() => SkibidicordNative.native.openExternal("https://github.com/" + gitRemote)}
                     />
                 </QuickActionCard>
             </Forms.FormSection>
@@ -142,7 +142,7 @@ function VencordSettings() {
                     {" "}<Button
                         look={Button.Looks.BLANK}
                         style={{ color: "var(--text-link)", display: "inline-block" }}
-                        onClick={() => openPluginModal(Vencord.Plugins.plugins.Settings)}
+                        onClick={() => openPluginModal(Skibidicord.Plugins.plugins.Settings)}
                     >
                         settings of the Settings plugin
                     </Button>!
@@ -225,7 +225,7 @@ function VencordSettings() {
                     serialize={identity} />
             </>}
 
-            <Forms.FormSection className={Margins.top16} title="Vencord Notifications" tag="h5">
+            <Forms.FormSection className={Margins.top16} title="Skibidicord Notifications" tag="h5">
                 <Flex>
                     <Button onClick={openNotificationSettingsModal}>
                         Notification Settings
@@ -248,7 +248,7 @@ function DonateCard({ image }: DonateCardProps) {
         <Card className={cl("card", "donate")}>
             <div>
                 <Forms.FormTitle tag="h5">Support the Project</Forms.FormTitle>
-                <Forms.FormText>Please consider supporting the development of Vencord by donating!</Forms.FormText>
+                <Forms.FormText>Please consider supporting the development of Skibidicord by donating!</Forms.FormText>
                 <DonateButton style={{ transform: "translateX(-1em)" }} />
             </div>
             <img
@@ -266,4 +266,4 @@ function DonateCard({ image }: DonateCardProps) {
     );
 }
 
-export default wrapTab(VencordSettings, "Vencord Settings");
+export default wrapTab(SkibidicordSettings, "Skibidicord Settings");

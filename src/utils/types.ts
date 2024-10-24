@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -135,7 +135,7 @@ export interface PluginDef {
      */
     contextMenus?: Record<string, NavContextMenuPatchCallback>;
     /**
-     * Allows you to add custom actions to the Vencord Toolbox.
+     * Allows you to add custom actions to the Skibidicord Toolbox.
      * The key will be used as text for the button
      */
     toolboxActions?: Record<string, () => void>;
@@ -144,7 +144,7 @@ export interface PluginDef {
 }
 
 export const enum StartAt {
-    /** Right away, as soon as Vencord initialised */
+    /** Right away, as soon as Skibidicord initialised */
     Init = "Init",
     /** On the DOMContentLoaded event, so once the document is ready */
     DOMContentLoaded = "DOMContentLoaded",
@@ -307,9 +307,9 @@ export interface DefinedSettings<
     Checks extends SettingsChecks<Def> = {},
     PrivateSettings extends object = {}
 > {
-    /** Shorthand for `Vencord.Settings.plugins.PluginName`, but with typings */
+    /** Shorthand for `Skibidicord.Settings.plugins.PluginName`, but with typings */
     store: SettingsStore<Def> & PrivateSettings;
-    /** Shorthand for `Vencord.PlainSettings.plugins.PluginName`, but with typings */
+    /** Shorthand for `Skibidicord.PlainSettings.plugins.PluginName`, but with typings */
     plain: SettingsStore<Def> & PrivateSettings;
     /**
      * React hook for getting the settings for this plugin

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -94,11 +94,11 @@ function makeShortcuts() {
         findAllComponentsByCode: (...code: string[]) => findAll(filters.componentByCode(...code)),
         findExportedComponent: (...props: string[]) => findByProps(...props)[props[0]],
         findStore: newFindWrapper(filters.byStoreName),
-        PluginsApi: { getter: () => Vencord.Plugins },
-        plugins: { getter: () => Vencord.Plugins.plugins },
-        Settings: { getter: () => Vencord.Settings },
-        Api: { getter: () => Vencord.Api },
-        Util: { getter: () => Vencord.Util },
+        PluginsApi: { getter: () => Skibidicord.Plugins },
+        plugins: { getter: () => Skibidicord.Plugins.plugins },
+        Settings: { getter: () => Skibidicord.Settings },
+        Api: { getter: () => Skibidicord.Api },
+        Util: { getter: () => Skibidicord.Util },
         reload: () => location.reload(),
         restart: IS_WEB ? DESKTOP_ONLY("restart") : relaunch,
         canonicalizeMatch,
@@ -123,7 +123,7 @@ function makeShortcuts() {
 
                     if (s.parentElement?.tagName === "HEAD")
                         doc.head.append(n);
-                    else if (n.id?.startsWith("vencord-") || n.id?.startsWith("vcd-"))
+                    else if (n.id?.startsWith("skibidicord-") || n.id?.startsWith("vcd-"))
                         doc.documentElement.append(n);
                     else
                         doc.body.append(n);
@@ -133,7 +133,7 @@ function makeShortcuts() {
             Common.ReactDOM.render(Common.React.createElement(component, props), doc.body.appendChild(document.createElement("div")));
         },
 
-        preEnable: (plugin: string) => (Vencord.Settings.plugins[plugin] ??= { enabled: true }).enabled = true,
+        preEnable: (plugin: string) => (Skibidicord.Settings.plugins[plugin] ??= { enabled: true }).enabled = true,
 
         channel: { getter: () => getCurrentChannel(), preload: false },
         channelId: { getter: () => Common.SelectedChannelStore.getChannelId(), preload: false },
@@ -196,7 +196,7 @@ export default definePlugin({
             setTimeout(() => this.eagerLoad(false), 1000);
 
             if (!IS_WEB) {
-                const Native = VencordNative.pluginHelpers.ConsoleShortcuts as PluginNative<typeof import("./native")>;
+                const Native = SkibidicordNative.pluginHelpers.ConsoleShortcuts as PluginNative<typeof import("./native")>;
                 Native.initDevtoolsOpenEagerLoad();
             }
         });

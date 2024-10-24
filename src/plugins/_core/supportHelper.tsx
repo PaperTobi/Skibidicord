@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@ import { getUserSettingLazy } from "@api/UserSettings";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
-import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
+import { openUpdaterModal } from "@components/SkibidicordSettings/UpdaterTab";
 import { Devs, SUPPORT_CHANNEL_ID } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
@@ -40,15 +40,15 @@ import plugins, { PluginMeta } from "~plugins";
 
 import SettingsPlugin from "./settings";
 
-const VENCORD_GUILD_ID = "1015060230222131221";
+const SKIBIDICORD_GUILD_ID = "1015060230222131221";
 const VENBOT_USER_ID = "1017176847865352332";
 const KNOWN_ISSUES_CHANNEL_ID = "1222936386626129920";
 const CodeBlockRe = /```js\n(.+?)```/s;
 
 const AllowedChannelIds = [
     SUPPORT_CHANNEL_ID,
-    "1024286218801926184", // Vencord > #bot-spam
-    "1033680203433660458", // Vencord > #v
+    "1024286218801926184", // Skibidicord > #bot-spam
+    "1033680203433660458", // Skibidicord > #v
 ];
 
 const TrustedRolesIds = [
@@ -85,8 +85,8 @@ async function generateDebugInfoMessage() {
     })();
 
     const info = {
-        Vencord:
-            `v${VERSION} • [${gitHash}](<https://github.com/Vendicated/Vencord/commit/${gitHash}>)` +
+        Skibidicord:
+            `v${VERSION} • [${gitHash}](<https://github.com/Vendicated/Skibidicord/commit/${gitHash}>)` +
             `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: window.navigator.platform
@@ -97,9 +97,9 @@ async function generateDebugInfoMessage() {
     }
 
     const commonIssues = {
-        "NoRPC enabled": Vencord.Plugins.isPluginEnabled("NoRPC"),
+        "NoRPC enabled": Skibidicord.Plugins.isPluginEnabled("NoRPC"),
         "Activity Sharing disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
-        "Vencord DevBuild": !IS_STANDALONE,
+        "Skibidicord DevBuild": !IS_STANDALONE,
         "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugin),
         "More than two weeks out of date": BUILD_TIMESTAMP < Date.now() - 12096e5,
     };
@@ -116,7 +116,7 @@ function generatePluginList() {
     const isApiPlugin = (plugin: string) => plugin.endsWith("API") || plugins[plugin].required;
 
     const enabledPlugins = Object.keys(plugins)
-        .filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
+        .filter(p => Skibidicord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
 
     const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugin);
     const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugin);
@@ -156,14 +156,14 @@ export default definePlugin({
 
     commands: [
         {
-            name: "vencord-debug",
-            description: "Send Vencord debug info",
+            name: "skibidicord-debug",
+            description: "Send Skibidicord debug info",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "vencord-plugins",
-            description: "Send Vencord plugin list",
+            name: "skibidicord-plugins",
+            description: "Send Skibidicord plugin list",
             predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: () => ({ content: generatePluginList() })
         }
@@ -183,7 +183,7 @@ export default definePlugin({
                     return Alerts.show({
                         title: "Hold on!",
                         body: <div>
-                            <Forms.FormText>You are using an outdated version of Vencord! Chances are, your issue is already fixed.</Forms.FormText>
+                            <Forms.FormText>You are using an outdated version of Skibidicord! Chances are, your issue is already fixed.</Forms.FormText>
                             <Forms.FormText className={Margins.top8}>
                                 Please first update before asking for support!
                             </Forms.FormText>
@@ -198,16 +198,16 @@ export default definePlugin({
             }
 
             // @ts-ignore outdated type
-            const roles = GuildMemberStore.getSelfMember(VENCORD_GUILD_ID)?.roles;
+            const roles = GuildMemberStore.getSelfMember(SKIBIDICORD_GUILD_ID)?.roles;
             if (!roles || TrustedRolesIds.some(id => roles.includes(id))) return;
 
             if (!IS_WEB && IS_UPDATER_DISABLED) {
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Forms.FormText>You are using an externally updated Vencord version, which we do not provide support for!</Forms.FormText>
+                        <Forms.FormText>You are using an externally updated Skibidicord version, which we do not provide support for!</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            Please either switch to an <Link href="https://vencord.dev/download">officially supported version of Vencord</Link>, or
+                            Please either switch to an <Link href="https://skibidicord.dev/download">officially supported version of Skibidicord</Link>, or
                             contact your package maintainer for support instead.
                         </Forms.FormText>
                     </div>
@@ -218,11 +218,11 @@ export default definePlugin({
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Forms.FormText>You are using a custom build of Vencord, which we do not provide support for!</Forms.FormText>
+                        <Forms.FormText>You are using a custom build of Skibidicord, which we do not provide support for!</Forms.FormText>
 
                         <Forms.FormText className={Margins.top8}>
-                            We only provide support for <Link href="https://vencord.dev/download">official builds</Link>.
-                            Either <Link href="https://vencord.dev/download">switch to an official build</Link> or figure your issue out yourself.
+                            We only provide support for <Link href="https://skibidicord.dev/download">official builds</Link>.
+                            Either <Link href="https://skibidicord.dev/download">switch to an official build</Link> or figure your issue out yourself.
                         </Forms.FormText>
 
                         <Text variant="text-md/bold" className={Margins.top8}>You will be banned from receiving support if you ignore this rule.</Text>
@@ -242,16 +242,16 @@ export default definePlugin({
 
         return (
             <Card className={`vc-plugins-restart-card ${Margins.top8}`}>
-                Please do not private message Vencord plugin developers for support!
+                Please do not private message Skibidicord plugin developers for support!
                 <br />
-                Instead, use the Vencord support channel: {Parser.parse("https://discord.com/channels/1015060230222131221/1026515880080842772")}
+                Instead, use the Skibidicord support channel: {Parser.parse("https://discord.com/channels/1015060230222131221/1026515880080842772")}
                 {!ChannelStore.getChannel(SUPPORT_CHANNEL_ID) && " (Click the link to join)"}
             </Card>
         );
     }, { noop: true }),
 
     start() {
-        addAccessory("vencord-debug", props => {
+        addAccessory("skibidicord-debug", props => {
             const buttons = [] as JSX.Element[];
 
             const shouldAddUpdateButton =
@@ -285,19 +285,19 @@ export default definePlugin({
             }
 
             if (props.channel.id === SUPPORT_CHANNEL_ID) {
-                if (props.message.content.includes("/vencord-debug") || props.message.content.includes("/vencord-plugins")) {
+                if (props.message.content.includes("/skibidicord-debug") || props.message.content.includes("/skibidicord-plugins")) {
                     buttons.push(
                         <Button
                             key="vc-dbg"
                             onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                         >
-                            Run /vencord-debug
+                            Run /skibidicord-debug
                         </Button>,
                         <Button
                             key="vc-plg-list"
                             onClick={async () => sendMessage(props.channel.id, { content: generatePluginList() })}
                         >
-                            Run /vencord-plugins
+                            Run /skibidicord-plugins
                         </Button>
                     );
                 }

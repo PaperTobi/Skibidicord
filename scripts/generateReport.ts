@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -86,7 +86,7 @@ function toCodeBlock(s: string, indentation = 0, isDiscord = false) {
 async function printReport() {
     console.log();
 
-    console.log("# Vencord Report" + (CANARY ? " (Canary)" : ""));
+    console.log("# Skibidicord Report" + (CANARY ? " (Canary)" : ""));
 
     console.log();
 
@@ -134,8 +134,8 @@ async function printReport() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                description: "Here's the latest Vencord Report!",
-                username: "Vencord Reporter" + (CANARY ? " (Canary)" : ""),
+                description: "Here's the latest Skibidicord Report!",
+                username: "Skibidicord Reporter" + (CANARY ? " (Canary)" : ""),
                 embeds: [
                     {
                         title: "Bad Patches",
@@ -199,11 +199,11 @@ page.on("console", async e => {
 
     const firstArg = await rawArgs[0]?.jsonValue();
 
-    const isVencord = firstArg === "[Vencord]";
+    const isSkibidicord = firstArg === "[Skibidicord]";
     const isDebug = firstArg === "[PUP_DEBUG]";
 
     outer:
-    if (isVencord) {
+    if (isSkibidicord) {
         try {
             var args = await Promise.all(e.args().map(a => a.jsonValue()));
         } catch {
@@ -300,7 +300,7 @@ page.on("pageerror", e => {
 });
 
 async function reporterRuntime(token: string) {
-    Vencord.Webpack.waitFor(
+    Skibidicord.Webpack.waitFor(
         "loginToken",
         m => {
             console.log("[PUP_DEBUG]", "Logging in with token...");

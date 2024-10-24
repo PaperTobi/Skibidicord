@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 */
 
 export const WEBPACK_CHUNK = "webpackChunkdiscord_app";
-export const REACT_GLOBAL = "Vencord.Webpack.Common.React";
+export const REACT_GLOBAL = "Skibidicord.Webpack.Common.React";
 export const SUPPORT_CHANNEL_ID = "1026515880080842772";
 
 export interface Dev {

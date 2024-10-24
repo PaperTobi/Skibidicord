@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -43,11 +43,11 @@ export const IS_REPORTER = process.argv.includes("--reporter");
 export const IS_STANDALONE = process.argv.includes("--standalone");
 
 export const IS_UPDATER_DISABLED = process.argv.includes("--disable-updater");
-export const gitHash = process.env.VENCORD_HASH || execSync("git rev-parse --short HEAD", { encoding: "utf-8" }).trim();
+export const gitHash = process.env.SKIBIDICORD_HASH || execSync("git rev-parse --short HEAD", { encoding: "utf-8" }).trim();
 
 export const banner = {
     js: `
-// Vencord ${gitHash}
+// Skibidicord ${gitHash}
 // Standalone: ${IS_STANDALONE}
 // Platform: ${IS_STANDALONE === false ? process.platform : "Universal"}
 // Updater Disabled: ${IS_UPDATER_DISABLED}
@@ -99,7 +99,7 @@ export const makeAllPackagesExternalPlugin = {
 };
 
 /**
- * @type {(kind: "web" | "discordDesktop" | "vencordDesktop") => import("esbuild").Plugin}
+ * @type {(kind: "web" | "discordDesktop" | "skibidicordDesktop") => import("esbuild").Plugin}
  */
 export const globPlugins = kind => ({
     name: "glob-plugins",
@@ -138,7 +138,7 @@ export const globPlugins = kind => ({
                             (target === "web" && kind === "discordDesktop") ||
                             (target === "desktop" && kind === "web") ||
                             (target === "discordDesktop" && kind !== "discordDesktop") ||
-                            (target === "vencordDesktop" && kind !== "vencordDesktop");
+                            (target === "skibidicordDesktop" && kind !== "skibidicordDesktop");
 
                         if (excluded) {
                             const name = await resolvePluginName(fullDir, file);
@@ -192,7 +192,7 @@ export const gitRemotePlugin = {
             namespace: "git-remote", path: args.path
         }));
         build.onLoad({ filter, namespace: "git-remote" }, async () => {
-            let remote = process.env.VENCORD_REMOTE;
+            let remote = process.env.SKIBIDICORD_REMOTE;
             if (!remote) {
                 const res = await promisify(exec)("git remote get-url origin", { encoding: "utf-8" });
                 remote = res.stdout.trim()
@@ -319,8 +319,8 @@ export const commonOpts = {
     plugins: [fileUrlPlugin, gitHashPlugin, gitRemotePlugin, stylePlugin],
     external: ["~plugins", "~git-hash", "~git-remote", "/assets/*"],
     inject: ["./scripts/build/inject/react.mjs"],
-    jsxFactory: "VencordCreateElement",
-    jsxFragment: "VencordFragment",
+    jsxFactory: "SkibidicordCreateElement",
+    jsxFragment: "SkibidicordFragment",
     // Work around https://github.com/evanw/esbuild/issues/2460
     tsconfig: "./scripts/build/tsconfig.esbuild.json"
 };

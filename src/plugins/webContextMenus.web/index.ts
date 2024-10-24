@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -108,7 +108,7 @@ export default definePlugin({
                 // Fix silly Discord calling the non web support copy
                 {
                     match: /\i\.\i\.copy/,
-                    replace: "Vencord.Webpack.Common.Clipboard.copy"
+                    replace: "Skibidicord.Webpack.Common.Clipboard.copy"
                 }
             ]
         },
@@ -217,7 +217,7 @@ export default definePlugin({
                 },
                 {
                     match: /\i\.\i\.copy/,
-                    replace: "Vencord.Webpack.Common.Clipboard.copy"
+                    replace: "Skibidicord.Webpack.Common.Clipboard.copy"
                 }]
         },
         // Automod add filter words

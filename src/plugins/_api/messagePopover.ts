@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ export default definePlugin({
         find: "Messages.MESSAGE_UTILITIES_A11Y_LABEL",
         replacement: {
             match: /\.jsx\)\((\i\.\i),\{label:\i\.\i\.Messages\.MESSAGE_ACTION_REPLY.{0,200}?"reply-self".{0,50}?\}\):null(?=,.+?message:(\i))/,
-            replace: "$&,Vencord.Api.MessagePopover._buildPopoverElements($1,$2)"
+            replace: "$&,Skibidicord.Api.MessagePopover._buildPopoverElements($1,$2)"
         }
     }],
 });

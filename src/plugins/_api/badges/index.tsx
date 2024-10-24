@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,10 +31,10 @@ import definePlugin from "@utils/types";
 import { Forms, Toasts, UserStore } from "@webpack/common";
 import { User } from "discord-types/general";
 
-const CONTRIBUTOR_BADGE = "https://vencord.dev/assets/favicon.png";
+const CONTRIBUTOR_BADGE = "https://skibidicord.dev/assets/favicon.png";
 
 const ContributorBadge: ProfileBadge = {
-    description: "Vencord Contributor",
+    description: "Skibidicord Contributor",
     image: CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => isPluginDev(userId),
@@ -50,7 +50,7 @@ async function loadBadges(noCache = false) {
     if (noCache)
         init.cache = "no-cache";
 
-    DonorBadges = await fetch("https://badges.vencord.dev/badges.json", init)
+    DonorBadges = await fetch("https://badges.skibidicord.dev/badges.json", init)
         .then(r => r.json());
 }
 
@@ -101,7 +101,7 @@ export default definePlugin({
     },
 
     async start() {
-        Vencord.Api.Badges.addBadge(ContributorBadge);
+        Skibidicord.Api.Badges.addBadge(ContributorBadge);
         await loadBadges();
     },
 
@@ -139,7 +139,7 @@ export default definePlugin({
                 const modalKey = openModal(props => (
                     <ErrorBoundary noop onError={() => {
                         closeModal(modalKey);
-                        VencordNative.native.openExternal("https://github.com/sponsors/Vendicated");
+                        SkibidicordNative.native.openExternal("https://github.com/sponsors/Vendicated");
                     }}>
                         <Modals.ModalRoot {...props}>
                             <Modals.ModalHeader>
@@ -153,7 +153,7 @@ export default definePlugin({
                                         }}
                                     >
                                         <Heart />
-                                        Vencord Donor
+                                        Skibidicord Donor
                                     </Forms.FormTitle>
                                 </Flex>
                             </Modals.ModalHeader>
@@ -174,10 +174,10 @@ export default definePlugin({
                                 </Flex>
                                 <div style={{ padding: "1em" }}>
                                     <Forms.FormText>
-                                        This Badge is a special perk for Vencord Donors
+                                        This Badge is a special perk for Skibidicord Donors
                                     </Forms.FormText>
                                     <Forms.FormText className={Margins.top20}>
-                                        Please consider supporting the development of Vencord by becoming a donor. It would mean a lot!!
+                                        Please consider supporting the development of Skibidicord by becoming a donor. It would mean a lot!!
                                     </Forms.FormText>
                                 </div>
                             </Modals.ModalContent>

@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and Megumin
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,13 @@
 */
 
 import { Settings } from "@api/Settings";
-import BackupAndRestoreTab from "@components/VencordSettings/BackupAndRestoreTab";
-import CloudTab from "@components/VencordSettings/CloudTab";
-import PatchHelperTab from "@components/VencordSettings/PatchHelperTab";
-import PluginsTab from "@components/VencordSettings/PluginsTab";
-import ThemesTab from "@components/VencordSettings/ThemesTab";
-import UpdaterTab from "@components/VencordSettings/UpdaterTab";
-import VencordTab from "@components/VencordSettings/VencordTab";
+import BackupAndRestoreTab from "@components/SkibidicordSettings/BackupAndRestoreTab";
+import CloudTab from "@components/SkibidicordSettings/CloudTab";
+import PatchHelperTab from "@components/SkibidicordSettings/PatchHelperTab";
+import PluginsTab from "@components/SkibidicordSettings/PluginsTab";
+import ThemesTab from "@components/SkibidicordSettings/ThemesTab";
+import UpdaterTab from "@components/SkibidicordSettings/UpdaterTab";
+import SkibidicordTab from "@components/SkibidicordSettings/SkibidicordTab";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { i18n, React } from "@webpack/common";
@@ -84,47 +84,47 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Vencord",
+                label: "Skibidicord",
                 className: "vc-settings-header"
             },
             {
-                section: "VencordSettings",
-                label: "Vencord",
-                element: VencordTab,
+                section: "SkibidicordSettings",
+                label: "Skibidicord",
+                element: SkibidicordTab,
                 className: "vc-settings"
             },
             {
-                section: "VencordPlugins",
+                section: "SkibidicordPlugins",
                 label: "Plugins",
                 element: PluginsTab,
                 className: "vc-plugins"
             },
             {
-                section: "VencordThemes",
+                section: "SkibidicordThemes",
                 label: "Themes",
                 element: ThemesTab,
                 className: "vc-themes"
             },
             !IS_UPDATER_DISABLED && {
-                section: "VencordUpdater",
+                section: "SkibidicordUpdater",
                 label: "Updater",
                 element: UpdaterTab,
                 className: "vc-updater"
             },
             {
-                section: "VencordCloud",
+                section: "SkibidicordCloud",
                 label: "Cloud",
                 element: CloudTab,
                 className: "vc-cloud"
             },
             {
-                section: "VencordSettingsSync",
+                section: "SkibidicordSettingsSync",
                 label: "Backup & Restore",
                 element: BackupAndRestoreTab,
                 className: "vc-backup-restore"
             },
             IS_DEV && {
-                section: "VencordPatchHelper",
+                section: "SkibidicordPatchHelper",
                 label: "Patch Helper",
                 element: PatchHelperTab,
                 className: "vc-patch-helper"
@@ -184,7 +184,7 @@ export default definePlugin({
     options: {
         settingsLocation: {
             type: OptionType.SELECT,
-            description: "Where to put the Vencord settings section",
+            description: "Where to put the Skibidicord settings section",
             options: [
                 { label: "At the very top", value: "top" },
                 { label: "Above the Nitro section", value: "aboveNitro", default: true },
@@ -197,12 +197,12 @@ export default definePlugin({
     },
 
     get electronVersion() {
-        return VencordNative.native.getVersions().electron || window.legcord?.electron || null;
+        return SkibidicordNative.native.getVersions().electron || window.legcord?.electron || null;
     },
 
     get chromiumVersion() {
         try {
-            return VencordNative.native.getVersions().chrome
+            return SkibidicordNative.native.getVersions().chrome
                 // @ts-ignore Typescript will add userAgentData IMMEDIATELY
                 || navigator.userAgentData?.brands?.find(b => b.brand === "Chromium" || b.brand === "Google Chrome")?.version
                 || null;
@@ -222,7 +222,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, additionalInfo } = this;
 
-        const rows = [`Vencord ${gitHash}${additionalInfo}`];
+        const rows = [`Skibidicord ${gitHash}${additionalInfo}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);

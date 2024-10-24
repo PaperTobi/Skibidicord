@@ -1,5 +1,5 @@
 /*
- * Vencord, a Discord client mod
+ * Skibidicord, a Discord client mod
  * Copyright (c) 2024 Vendicated and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -125,7 +125,7 @@ export default definePlugin({
             find: ".FRIENDS},\"friends\"",
             replacement: {
                 match: /(?<=\i=\i=>{).{1,100}premiumTabSelected.{1,800}showDMHeader:.+?,/,
-                replace: "let forceUpdate = Vencord.Util.useForceUpdater();$&_forceUpdate:forceUpdate,"
+                replace: "let forceUpdate = Skibidicord.Util.useForceUpdater();$&_forceUpdate:forceUpdate,"
             }
         },
 

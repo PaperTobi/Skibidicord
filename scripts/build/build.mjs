@@ -1,6 +1,6 @@
 #!/usr/bin/node
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ const nodeCommonOpts = {
     define: defines
 };
 
-const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=vencord://${s}.js.map`;
+const sourceMapFooter = s => watch ? "" : `//# sourceMappingURL=skibidicord://${s}.js.map`;
 const sourcemap = watch ? "inline" : "external";
 
 /**
@@ -108,7 +108,7 @@ await Promise.all([
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
         outfile: "dist/patcher.js",
-        footer: { js: "//# sourceURL=VencordPatcher\n" + sourceMapFooter("patcher") },
+        footer: { js: "//# sourceURL=SkibidicordPatcher\n" + sourceMapFooter("patcher") },
         sourcemap,
         define: {
             ...defines,
@@ -122,12 +122,12 @@ await Promise.all([
     }),
     esbuild.build({
         ...commonOpts,
-        entryPoints: ["src/Vencord.ts"],
+        entryPoints: ["src/Skibidicord.ts"],
         outfile: "dist/renderer.js",
         format: "iife",
         target: ["esnext"],
-        footer: { js: "//# sourceURL=VencordRenderer\n" + sourceMapFooter("renderer") },
-        globalName: "Vencord",
+        footer: { js: "//# sourceURL=SkibidicordRenderer\n" + sourceMapFooter("renderer") },
+        globalName: "Skibidicord",
         sourcemap,
         plugins: [
             globPlugins("discordDesktop"),
@@ -143,7 +143,7 @@ await Promise.all([
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
         outfile: "dist/preload.js",
-        footer: { js: "//# sourceURL=VencordPreload\n" + sourceMapFooter("preload") },
+        footer: { js: "//# sourceURL=SkibidicordPreload\n" + sourceMapFooter("preload") },
         sourcemap,
         define: {
             ...defines,
@@ -152,12 +152,12 @@ await Promise.all([
         }
     }),
 
-    // Vencord Desktop main & renderer & preload
+    // Skibidicord Desktop main & renderer & preload
     esbuild.build({
         ...nodeCommonOpts,
         entryPoints: ["src/main/index.ts"],
-        outfile: "dist/vencordDesktopMain.js",
-        footer: { js: "//# sourceURL=VencordDesktopMain\n" + sourceMapFooter("vencordDesktopMain") },
+        outfile: "dist/skibidicordDesktopMain.js",
+        footer: { js: "//# sourceURL=SkibidicordDesktopMain\n" + sourceMapFooter("skibidicordDesktopMain") },
         sourcemap,
         define: {
             ...defines,
@@ -171,15 +171,15 @@ await Promise.all([
     }),
     esbuild.build({
         ...commonOpts,
-        entryPoints: ["src/Vencord.ts"],
-        outfile: "dist/vencordDesktopRenderer.js",
+        entryPoints: ["src/Skibidicord.ts"],
+        outfile: "dist/skibidicordDesktopRenderer.js",
         format: "iife",
         target: ["esnext"],
-        footer: { js: "//# sourceURL=VencordDesktopRenderer\n" + sourceMapFooter("vencordDesktopRenderer") },
-        globalName: "Vencord",
+        footer: { js: "//# sourceURL=SkibidicordDesktopRenderer\n" + sourceMapFooter("skibidicordDesktopRenderer") },
+        globalName: "Skibidicord",
         sourcemap,
         plugins: [
-            globPlugins("vencordDesktop"),
+            globPlugins("skibidicordDesktop"),
             ...commonRendererPlugins
         ],
         define: {
@@ -191,8 +191,8 @@ await Promise.all([
     esbuild.build({
         ...nodeCommonOpts,
         entryPoints: ["src/preload.ts"],
-        outfile: "dist/vencordDesktopPreload.js",
-        footer: { js: "//# sourceURL=VencordPreload\n" + sourceMapFooter("vencordDesktopPreload") },
+        outfile: "dist/skibidicordDesktopPreload.js",
+        footer: { js: "//# sourceURL=SkibidicordPreload\n" + sourceMapFooter("skibidicordDesktopPreload") },
         sourcemap,
         define: {
             ...defines,

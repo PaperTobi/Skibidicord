@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,29 +17,29 @@
 */
 
 export const enum IpcEvents {
-    QUICK_CSS_UPDATE = "VencordQuickCssUpdate",
-    THEME_UPDATE = "VencordThemeUpdate",
-    GET_QUICK_CSS = "VencordGetQuickCss",
-    SET_QUICK_CSS = "VencordSetQuickCss",
-    UPLOAD_THEME = "VencordUploadTheme",
-    DELETE_THEME = "VencordDeleteTheme",
-    GET_THEMES_DIR = "VencordGetThemesDir",
-    GET_THEMES_LIST = "VencordGetThemesList",
-    GET_THEME_DATA = "VencordGetThemeData",
-    GET_THEME_SYSTEM_VALUES = "VencordGetThemeSystemValues",
-    GET_SETTINGS_DIR = "VencordGetSettingsDir",
-    GET_SETTINGS = "VencordGetSettings",
-    SET_SETTINGS = "VencordSetSettings",
-    OPEN_EXTERNAL = "VencordOpenExternal",
-    OPEN_QUICKCSS = "VencordOpenQuickCss",
-    GET_UPDATES = "VencordGetUpdates",
-    GET_REPO = "VencordGetRepo",
-    UPDATE = "VencordUpdate",
-    BUILD = "VencordBuild",
-    OPEN_MONACO_EDITOR = "VencordOpenMonacoEditor",
+    QUICK_CSS_UPDATE = "SkibidicordQuickCssUpdate",
+    THEME_UPDATE = "SkibidicordThemeUpdate",
+    GET_QUICK_CSS = "SkibidicordGetQuickCss",
+    SET_QUICK_CSS = "SkibidicordSetQuickCss",
+    UPLOAD_THEME = "SkibidicordUploadTheme",
+    DELETE_THEME = "SkibidicordDeleteTheme",
+    GET_THEMES_DIR = "SkibidicordGetThemesDir",
+    GET_THEMES_LIST = "SkibidicordGetThemesList",
+    GET_THEME_DATA = "SkibidicordGetThemeData",
+    GET_THEME_SYSTEM_VALUES = "SkibidicordGetThemeSystemValues",
+    GET_SETTINGS_DIR = "SkibidicordGetSettingsDir",
+    GET_SETTINGS = "SkibidicordGetSettings",
+    SET_SETTINGS = "SkibidicordSetSettings",
+    OPEN_EXTERNAL = "SkibidicordOpenExternal",
+    OPEN_QUICKCSS = "SkibidicordOpenQuickCss",
+    GET_UPDATES = "SkibidicordGetUpdates",
+    GET_REPO = "SkibidicordGetRepo",
+    UPDATE = "SkibidicordUpdate",
+    BUILD = "SkibidicordBuild",
+    OPEN_MONACO_EDITOR = "SkibidicordOpenMonacoEditor",
 
-    GET_PLUGIN_IPC_METHOD_MAP = "VencordGetPluginIpcMethodMap",
+    GET_PLUGIN_IPC_METHOD_MAP = "SkibidicordGetPluginIpcMethodMap",
 
-    OPEN_IN_APP__RESOLVE_REDIRECT = "VencordOIAResolveRedirect",
-    VOICE_MESSAGES_READ_RECORDING = "VencordVMReadRecording",
+    OPEN_IN_APP__RESOLVE_REDIRECT = "SkibidicordOIAResolveRedirect",
+    VOICE_MESSAGES_READ_RECORDING = "SkibidicordVMReadRecording",
 }

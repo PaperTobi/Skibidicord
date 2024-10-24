@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2023 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -138,8 +138,8 @@ function CompactConnectionComponent({ connection, theme }: { connection: Connect
                         href={url}
                         target="_blank"
                         onClick={e => {
-                            if (Vencord.Plugins.isPluginEnabled("OpenInApp")) {
-                                const OpenInApp = Vencord.Plugins.plugins.OpenInApp as any as typeof import("../openInApp").default;
+                            if (Skibidicord.Plugins.isPluginEnabled("OpenInApp")) {
+                                const OpenInApp = Skibidicord.Plugins.plugins.OpenInApp as any as typeof import("../openInApp").default;
                                 // handleLink will .preventDefault() if applicable
                                 OpenInApp.handleLink(e.currentTarget, e);
                             }

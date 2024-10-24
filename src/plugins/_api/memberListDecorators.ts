@@ -1,5 +1,5 @@
 /*
- * Vencord, a modification for Discord's desktop app
+ * Skibidicord, a modification for Discord's desktop app
  * Copyright (c) 2022 Vendicated and contributors
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,10 +29,10 @@ export default definePlugin({
             replacement: [
                 {
                     match: /let\{[^}]*lostPermissionTooltipText:\i[^}]*\}=(\i),/,
-                    replace: "$&vencordProps=$1,"
+                    replace: "$&skibidicordProps=$1,"
                 }, {
                     match: /\.Messages\.GUILD_OWNER(?=.+?decorators:(\i)\(\)).+?\1=?\(\)=>.+?children:\[/,
-                    replace: "$&...(typeof vencordProps=='undefined'?[]:Vencord.Api.MemberListDecorators.__getDecorators(vencordProps)),"
+                    replace: "$&...(typeof skibidicordProps=='undefined'?[]:Skibidicord.Api.MemberListDecorators.__getDecorators(skibidicordProps)),"
                 }
             ]
         },
@@ -40,7 +40,7 @@ export default definePlugin({
             find: "PrivateChannel.renderAvatar",
             replacement: {
                 match: /decorators:(\i\.isSystemDM\(\))\?(.+?):null/,
-                replace: "decorators:[...Vencord.Api.MemberListDecorators.__getDecorators(arguments[0]), $1?$2:null]"
+                replace: "decorators:[...Skibidicord.Api.MemberListDecorators.__getDecorators(arguments[0]), $1?$2:null]"
             }
         }
     ],
